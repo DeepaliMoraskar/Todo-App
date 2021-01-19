@@ -9,10 +9,6 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.handleChangeBucket = this.handleChangeBucket.bind(this);
-    this.handleChangeTodo = this.handleChangeTodo.bind(this);
-    this.handleSubmitBucket = this.handleSubmitBucket.bind(this);
-    this.handleSubmitTodo = this.handleSubmitTodo.bind(this);
     this.input = [];
     this.state = {
       bucketName: '',
@@ -25,7 +21,7 @@ class App extends Component {
     }
   }
 
-  handleChangeBucket(e) {
+  handleChangeBucket = (e) => {
     if (e.target.value.trim() !== "") {
       this.setState({
         bucketName: e.target.value,
@@ -39,7 +35,7 @@ class App extends Component {
     }
   }
 
-  handleChangeTodo(e, bucketItem, i) {
+  handleChangeTodo = (e, bucketItem, i) => {
     let dataBucket = this.props.bucket;
     let dataObj = dataBucket
 
@@ -57,7 +53,7 @@ class App extends Component {
     })
   }
 
-  handleSubmitBucket(e) {
+  handleSubmitBucket = (e) => {
     e.preventDefault();
     if (this.state.bucketName && this.state.bucketName !== "") {
       let dataBucket = this.props.bucket;
@@ -79,7 +75,7 @@ class App extends Component {
     }
   }
 
-  updateTodo(e, i, bucketIndex) {
+  updateTodo = (e, i, bucketIndex) => {
     let data = this.props.bucket;
     data[bucketIndex].toDo[i].toDoName = e.target.value
     this.props.editTodo(data);
@@ -89,7 +85,7 @@ class App extends Component {
   }
 
 
-  handleSubmitTodo(e, i) {
+  handleSubmitTodo = (e, i) => {
     if (this.state.toDoName[i].name !== "") {
       let dataBucket = this.props.bucket
       dataBucket[i].isDisableAddTodo = true
@@ -161,7 +157,7 @@ class App extends Component {
     )
   }
 
-  deleteTodo(e, index, bucketIndex) {
+  deleteTodo = (e, index, bucketIndex) => {
     e.preventDefault();
     let data = this.props.bucket;
     let filteredData = data[bucketIndex].toDo.filter((data, i) => i !== index);
@@ -176,8 +172,8 @@ class App extends Component {
         <nav className="navbar navbar-light bg-light justify-content-between">
           <a className="navbar-brand">TO-DO</a>
           <form className="form-inline">
-            <input type="text" onChange={this.handleChangeBucket} className="form-control mr-sm-2" value={this.state.bucketName} />
-            <button type="submit" disabled={this.state.isDisableAddBucket} className="btn btn-outline-success my-2 my-sm-0" onClick={this.handleSubmitBucket}>Add Bucket</button>
+            <input type="text" onChange={(e) => this.handleChangeBucket(e)} className="form-control mr-sm-2" value={this.state.bucketName} />
+            <button type="submit" disabled={this.state.isDisableAddBucket} className="btn btn-outline-success my-2 my-sm-0" onClick={(e) => this.handleSubmitBucket(e)}>Add Bucket</button>
           </form>
         </nav>
 

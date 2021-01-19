@@ -61,7 +61,7 @@
  position: relative;
  padding: 1rem;
  height: 350px;
- overflow: scroll;
+ overflow: auto;
 }
 
 
